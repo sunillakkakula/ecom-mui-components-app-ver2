@@ -6,6 +6,8 @@ import Home from "./components/Home";
 import ProductDetails from "./components/ProductDetails";
 import Cart from "./components/Cart";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+import Login from "./components/Login";
+import Register from "./components/Register";
 
 const App = () => {
   return (
@@ -13,10 +15,11 @@ const App = () => {
       <Header></Header>
       <main className="py-3">
         <Container>
-          <Route path="/" exact component={Home} />
+          <Route path="/login" exact component={Login} />
           <Route path="/product/:id" component={ProductDetails} />
-          <Route path="/cart/:id?" exact component={Cart} />
-          <Route path="/test" exact component={Test} />
+          <Route path="/cart/:id?" component={Cart} />
+          <Route path="/register" component={Register} />
+          <Route path="/" exact component={Home} />
         </Container>
       </main>
       <Footer />
