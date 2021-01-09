@@ -3,6 +3,7 @@ import { LinkContainer } from "react-router-bootstrap";
 import { Navbar, Nav, Container, NavDropdown } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
 import { logout } from "../actions/userAction.js";
+import { Card } from "@material-ui/core";
 
 const Header = () => {
   const dispatch = useDispatch();
@@ -15,8 +16,24 @@ const Header = () => {
   return (
     <div>
       <header>
-        <Navbar bg="primary" expand="lg" collapseOnSelect fixed="top">
+        <Navbar
+          style={{ background: "#800000" }}
+          expand="lg"
+          collapseOnSelect
+          fixed="top"
+        >
           <Container>
+            {
+              <img
+                src="./images/logo.jpg"
+                alt="..."
+                width="50px"
+                height="50px"
+                className="img-thumbnail"
+                style={{ marginRight: "30px" }}
+              ></img>
+            }
+
             <LinkContainer to="/">
               <Navbar.Brand>Tagline Traders</Navbar.Brand>
             </LinkContainer>
@@ -25,11 +42,19 @@ const Header = () => {
               <Nav className="ml-auto">
                 <LinkContainer to="/cart">
                   <Nav.Link>
-                    <i className="fas fa-shopping-cart"></i> Cart
+                    <i
+                      className="fas fa-shopping-cart"
+                      style={{ color: "white" }}
+                    ></i>{" "}
+                    <span style={{ color: "white" }}>Cart</span>
                   </Nav.Link>
                 </LinkContainer>
                 {userInfo ? (
-                  <NavDropdown title={userInfo.name} id="username">
+                  <NavDropdown
+                    title={userInfo.name}
+                    id="username"
+                    style={{ color: "white" }}
+                  >
                     <LinkContainer to="/profile">
                       <NavDropdown.Item>Profile</NavDropdown.Item>
                     </LinkContainer>

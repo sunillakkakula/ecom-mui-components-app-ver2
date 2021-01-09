@@ -5,7 +5,7 @@ import Message from "./Message";
 import Loader from "./Loader";
 import { getUserDetails } from "../actions/userAction";
 
-const Profile = (location, history) => {
+const Profile = ({ location, history }) => {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");

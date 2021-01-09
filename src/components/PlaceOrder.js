@@ -1,14 +1,35 @@
-import React, { useState } from "react";
+import React, { useEffect } from "react";
 import { Button, Row, Col, ListGroup, Image, Card } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
 import Message from "./Message";
 import { Link } from "react-router-dom";
 import CheckoutSteps from "./CheckoutSteps";
+import { createOrder } from "../actions/orderAction";
 
-const PlaceOrder = () => {
+const PlaceOrder = ({ history }) => {
+  const dispatch = useDispatch();
   const cart = useSelector((state) => state.cart);
+  const orderCreate = useSelector((state) => state.orderCreate);
+  const { order, success, error } = orderCreate;
+  useEffect(() => {
+    if (success) {
+      history.pushState("/order");
+    }
+    // eslint-disable-next-line
+  }, [history, success]);
   const placeOrderHandler = () => {
     console.log("Exec placeOrderHandler");
+    dispatch(
+      createOrder({
+        orderItems: cart.cartItems,
+        shippingAddress: cart.shippingAddress,
+        paymentMethod: cart.paymentMethod,
+        itemsPrice: cart.itemsPrice,
+        totalPrice: cart.totalPrice,
+        shippingPrice: cart.shippingPrice,
+        taxPrice: cart.taxPrice,
+      })
+    );
   };
   const addDecimals = (num) => {
     return (Math.round(num * 100) / 100).toFixed(2);
@@ -110,6 +131,9 @@ const PlaceOrder = () => {
                   <Col>Total</Col>
                   <Col>{addDecimals(cart.totalPrice)}</Col>
                 </Row>
+              </ListGroup.Item>
+              <ListGroup.Item>
+                {error && <Message variant="danger">{error}</Message>}
               </ListGroup.Item>
               <ListGroup.Item>
                 <Button

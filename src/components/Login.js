@@ -27,7 +27,7 @@ const Login = ({ location, history }) => {
     dispatch(login(email, password));
   };
   return (
-    <FormContainer>
+    <FormContainer style={{ marginTop: "50rem" }}>
       <h1>Sign In</h1>
       {error && <Message variant="danger">{error}</Message>}
       {loading && <Loader />}

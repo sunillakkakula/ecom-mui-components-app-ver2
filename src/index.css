@@ -10,3 +10,7 @@ h1{
   font-size: 1.4rem;
   padding : 0.1rem;
 }
+
+.navbar-light .navbar-brand {
+    color: rgb(236 231 231 / 90%);
+}
